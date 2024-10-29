@@ -18,6 +18,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Desactivar CSRF si es necesario
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll() // Permitir acceso a Swagger
                         .requestMatchers("/usuarios/**").hasRole("ADMIN")
                         .requestMatchers("/clases/**", "/estudios/**", "/reservas/**").authenticated()
                         .anyRequest().permitAll()
