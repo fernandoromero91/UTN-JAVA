@@ -32,16 +32,16 @@ public class EstudioDeBaileController {
         return new ResponseEntity<>(estudioDeBaileService.createEstudio(estudioDeBaile), HttpStatus.CREATED);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+/*     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error de validación: " + errorMessage);
-    }
+    } */
 
     @PutMapping("/{id}")
-    public ResponseEntity<EstudioDeBaile> updateEstudio(@PathVariable Long id, @RequestBody EstudioDeBaile estudioDetails) {
+    public ResponseEntity<EstudioDeBaile> updateEstudio(@PathVariable Long id,@Valid @RequestBody EstudioDeBaile estudioDetails) {
         try {
             return ResponseEntity.ok(estudioDeBaileService.updateEstudio(id, estudioDetails));
         } catch (RuntimeException e) {

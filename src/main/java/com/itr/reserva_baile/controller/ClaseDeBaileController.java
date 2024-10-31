@@ -40,16 +40,16 @@ public class ClaseDeBaileController {
         return new ResponseEntity<>(claseDeBaileService.createClase(claseDeBaile), HttpStatus.CREATED);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+/*     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error de validación: " + errorMessage);
-    }
+    } */
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClaseDeBaile> updateClase(@PathVariable Long id, @RequestBody ClaseDeBaile claseDetails) {
+    public ResponseEntity<ClaseDeBaile> updateClase(@PathVariable Long id,@Valid @RequestBody ClaseDeBaile claseDetails) {
         try {
             return ResponseEntity.ok(claseDeBaileService.updateClase(id, claseDetails));
         } catch (RuntimeException e) {

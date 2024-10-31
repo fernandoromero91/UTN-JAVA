@@ -39,16 +39,16 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarioService.createUsuario(usuario), HttpStatus.CREATED);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+/*     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error de validación: " + errorMessage);
-    }
+    } */
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id,@Valid @RequestBody Usuario usuarioDetails) {
         try {
             Usuario updatedUsuario = usuarioService.updateUsuario(id, usuarioDetails);
             return ResponseEntity.ok(updatedUsuario);

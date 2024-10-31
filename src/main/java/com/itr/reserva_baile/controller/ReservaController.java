@@ -33,17 +33,17 @@ public class ReservaController {
         return new ResponseEntity<>(reservaService.createReserva(reserva), HttpStatus.CREATED);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+/*     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         System.out.println("Error de validación detectado");
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error de validación: " + errorMessage);
-    }
+    } */
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reserva> updateReserva(@PathVariable Long id, @RequestBody Reserva reservaDetails) {
+    public ResponseEntity<Reserva> updateReserva(@PathVariable Long id,@Valid @RequestBody Reserva reservaDetails) {
         try {
             return ResponseEntity.ok(reservaService.updateReserva(id, reservaDetails));
         } catch (RuntimeException e) {
