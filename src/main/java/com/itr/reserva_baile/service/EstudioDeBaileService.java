@@ -30,7 +30,7 @@ public class EstudioDeBaileService {
                     estudio.setUbicacion(estudioDetails.getUbicacion());
                     estudio.setCapacidad(estudioDetails.getCapacidad());
                     estudio.setPrecioHora(estudioDetails.getPrecioHora());
-                    estudio.setDisponibilidad(estudioDetails.isDisponibilidad());
+                    estudio.setDisponibilidad(estudioDetails.getDisponibilidad());
                     return estudioDeBaileRepository.save(estudio);
                 })
                 .orElseThrow(() -> new RuntimeException("Estudio no encontrado"));
