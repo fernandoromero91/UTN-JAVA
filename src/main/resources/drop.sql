@@ -9,3 +9,9 @@ DROP TABLE IF EXISTS ClaseDeBaile;
 
 -- Eliminación de la tabla Usuario
 DROP TABLE IF EXISTS Usuario;
+
+-- Eliminación de la tabla pago
+DROP TABLE IF EXISTS pago;
+
+-- Eliminación de la tabla instructor
+DROP TABLE IF EXISTS instructor;
