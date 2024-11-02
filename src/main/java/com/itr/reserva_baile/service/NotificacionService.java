@@ -54,4 +54,11 @@ public class NotificacionService {
     public Iterable<Notificacion> getNotificacionesByDestinatario(Long destinatarioId) {
         return notificacionRepository.findByDestinatarioId(destinatarioId);
     }
+
+    public Optional<Notificacion> updateEstadoNotificacion(Long id, String nuevoEstado) {
+        return notificacionRepository.findById(id).map(notificacion -> {
+            notificacion.setEstado(nuevoEstado);
+            return notificacionRepository.save(notificacion);
+        });
+    }
 }

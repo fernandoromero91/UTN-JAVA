@@ -12,9 +12,9 @@ import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 
-@Data // Genera automáticamente getters y setters, entre otros
-@NoArgsConstructor // Genera un constructor sin argumentos
-@AllArgsConstructor // Genera un constructor con un parámetro para cada campo
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table("notificacion")
 public class Notificacion {
     @Id
@@ -34,4 +34,14 @@ public class Notificacion {
 
     @NotEmpty(message = "El estado es obligatorio")
     private String estado;
+
+    // Constructor adicional para tests
+    public Notificacion(Long id, String mensaje, String estado, Long destinatarioId) {
+        this.id = id;
+        this.mensaje = mensaje;
+        this.estado = estado;
+        this.destinatarioId = destinatarioId;
+        this.fechaEnvio = LocalDateTime.now();
+        this.tipo = "SISTEMA";
+    }
 }
