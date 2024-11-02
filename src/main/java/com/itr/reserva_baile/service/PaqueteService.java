@@ -5,6 +5,7 @@ import com.itr.reserva_baile.repository.PaqueteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -58,4 +59,10 @@ public class PaqueteService {
     public Iterable<Paquete> getPaquetesByDuracion(Integer duracion) {
         return paqueteRepository.findByDuracion(duracion);
     }
+
+    // Métodos adicionales para el service
+    public Iterable<Paquete> getPaquetesByPrecioRange(BigDecimal minPrecio, BigDecimal maxPrecio) {
+        return paqueteRepository.findByPrecioBetween(minPrecio, maxPrecio);
+    }
+
 }
