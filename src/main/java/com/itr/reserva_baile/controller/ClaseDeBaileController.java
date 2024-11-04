@@ -61,7 +61,13 @@ public class ClaseDeBaileController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClase(@PathVariable Long id) {
-        claseDeBaileService.deleteClase(id);
-        return ResponseEntity.noContent().build();
+        try {
+            // Primero verificamos si existe
+            claseDeBaileService.getClaseById(id);
+            claseDeBaileService.deleteClase(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

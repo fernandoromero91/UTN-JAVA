@@ -53,7 +53,13 @@ public class ReservaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReserva(@PathVariable Long id) {
-        reservaService.deleteReserva(id);
-        return ResponseEntity.noContent().build();
+        try {
+            // Primero verificamos si existe
+            reservaService.getReservaById(id);
+            reservaService.deleteReserva(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -52,7 +52,13 @@ public class EstudioDeBaileController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEstudio(@PathVariable Long id) {
-        estudioDeBaileService.deleteEstudio(id);
-        return ResponseEntity.noContent().build();
+        try {
+            // Primero verificamos si existe
+            estudioDeBaileService.getEstudioById(id);
+            estudioDeBaileService.deleteEstudio(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
