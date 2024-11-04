@@ -27,6 +27,11 @@ public class ClaseDeBaileService {
         return claseDeBaileRepository.save(claseDeBaile);
     }
 
+    public ClaseDeBaile getClaseById(Long id) {
+        return claseDeBaileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Clase de baile no encontrada con id: " + id));
+    }
+
     public ClaseDeBaile updateClase(Long id, ClaseDeBaile claseDetails) {
         return claseDeBaileRepository.findById(id)
                 .map(clase -> {

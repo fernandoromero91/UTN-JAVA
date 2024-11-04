@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Usuarios", description = "API para gestionar usuarios")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -32,14 +38,14 @@ public class UsuarioController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
+    @Operation(summary = "Crear nuevo usuario", description = "Crea un nuevo usuario en el sistema")
     @PostMapping
     public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody Usuario usuario) {
         return new ResponseEntity<>(usuarioService.createUsuario(usuario), HttpStatus.CREATED);
     }
 
-
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id,@Valid @RequestBody Usuario usuarioDetails) {
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @Valid @RequestBody Usuario usuarioDetails) {
         try {
             Usuario updatedUsuario = usuarioService.updateUsuario(id, usuarioDetails);
             return ResponseEntity.ok(updatedUsuario);
@@ -50,7 +56,13 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-        usuarioService.deleteUsuario(id);
-        return ResponseEntity.noContent().build();
+        try {
+            // Primero verificamos si existe
+            usuarioService.getUsuarioById(id);
+            usuarioService.deleteUsuario(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

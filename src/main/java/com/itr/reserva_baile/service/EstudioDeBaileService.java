@@ -39,4 +39,9 @@ public class EstudioDeBaileService {
     public void deleteEstudio(Long id) {
         estudioDeBaileRepository.deleteById(id);
     }
+
+    public EstudioDeBaile getEstudioById(Long id) {
+        return estudioDeBaileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Estudio de baile no encontrado con id: " + id));
+    }
 }
