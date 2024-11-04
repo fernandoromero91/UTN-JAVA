@@ -1,5 +1,6 @@
 package com.itr.reserva_baile.controller;
 
+import com.itr.reserva_baile.dto.ReservaResponseDTO;
 import com.itr.reserva_baile.model.Reserva;
 import com.itr.reserva_baile.service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,10 @@ public class ReservaController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+        @GetMapping("/detalles")
+    public ResponseEntity<Iterable<ReservaResponseDTO>> getAllReservasWithDetails() {
+        return ResponseEntity.ok(reservaService.getAllReservasWithDetails());
     }
 }
