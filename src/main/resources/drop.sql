@@ -19,3 +19,8 @@ DROP TABLE IF EXISTS Paquete;
 
 -- Eliminación de la tabla Paquete_clase
 DROP TABLE IF EXISTS Paquete_clase;
+-- Eliminación de la tabla pago
+DROP TABLE IF EXISTS pago;
+
+-- Eliminación de la tabla instructor
+DROP TABLE IF EXISTS instructor;

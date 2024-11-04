@@ -71,4 +71,23 @@ CREATE TABLE paquete_clase (
     PRIMARY KEY (paquete_id, clase_id),
     FOREIGN KEY (paquete_id) REFERENCES paquete(id),
     FOREIGN KEY (clase_id) REFERENCES clase_de_baile(id)
+-- Creación de la tabla Instructor
+CREATE TABLE instructor (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    especialidad VARCHAR(255) NOT NULL,
+    experiencia INT NOT NULL,
+    contacto VARCHAR(255) NOT NULL
+);
+
+-- Creación de la tabla Pago
+CREATE TABLE pago (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id BIGINT NOT NULL,
+    reserva_id BIGINT, -- Opcional, puede estar vacío
+    monto DECIMAL(10, 2) NOT NULL,
+    fecha DATE NOT NULL,
+    metodo_pago VARCHAR(50) NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    FOREIGN KEY (reserva_id) REFERENCES reserva(id) ON DELETE SET NULL
 );
