@@ -1,8 +1,10 @@
 package com.itr.reserva_baile.service;
 
+import com.itr.reserva_baile.model.EstudioDeBaile;
 import com.itr.reserva_baile.model.Reserva;
 import com.itr.reserva_baile.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,6 +38,11 @@ public class ReservaService {
                     return reservaRepository.save(reserva);
                 })
                 .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
+    }
+
+    public Reserva getReservaById(Long id) {
+        return reservaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reserva no encontrada con id: " + id));
     }
 
     public void deleteReserva(Long id) {

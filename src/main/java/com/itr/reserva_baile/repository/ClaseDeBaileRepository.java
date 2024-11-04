@@ -1,6 +1,7 @@
 package com.itr.reserva_baile.repository;
 
 import com.itr.reserva_baile.model.ClaseDeBaile;
+
 import org.springframework.data.repository.CrudRepository;
 
 // repositorio para la entidad ClaseDeBaile, spring data generara la implementacion de la interfaz

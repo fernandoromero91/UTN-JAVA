@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Reservas", description = "API para gestionar reservas")
 @RestController
 @RequestMapping("/reservas")
 public class ReservaController {
@@ -31,11 +33,19 @@ public class ReservaController {
         return new ResponseEntity<>(reservaService.createReserva(reserva), HttpStatus.CREATED);
     }
 
-
     @PutMapping("/{id}")
-    public ResponseEntity<Reserva> updateReserva(@PathVariable Long id,@Valid @RequestBody Reserva reservaDetails) {
+    public ResponseEntity<Reserva> updateReserva(@PathVariable Long id, @Valid @RequestBody Reserva reservaDetails) {
         try {
             return ResponseEntity.ok(reservaService.updateReserva(id, reservaDetails));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Reserva> getReservaById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(reservaService.getReservaById(id));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
