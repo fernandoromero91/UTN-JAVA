@@ -2,10 +2,10 @@
 DROP TABLE IF EXISTS Reserva;
 
 -- Eliminación de la tabla EstudioDeBaile
-DROP TABLE IF EXISTS estudio_de_baile;
+DROP TABLE IF EXISTS EstudioDeBaile;
 
 -- Eliminación de la tabla ClaseDeBaile
-DROP TABLE IF EXISTS Clase_de_baile;
+DROP TABLE IF EXISTS ClaseDeBaile;
 
 -- Eliminación de la tabla Usuario
 DROP TABLE IF EXISTS Usuario;
@@ -24,3 +24,9 @@ DROP TABLE IF EXISTS pago;
 
 -- Eliminación de la tabla instructor
 DROP TABLE IF EXISTS instructor;
+
+-- Eliminación de la tabla Membresia
+DROP TABLE IF EXISTS Membresia;
+
+-- Eliminación de la tabla Resenia
+DROP TABLE IF EXISTS Resenia;
