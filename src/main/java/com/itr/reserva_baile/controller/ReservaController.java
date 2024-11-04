@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Reservas", description = "API para gestionar reservas")
 @RestController
 @RequestMapping("/reservas")
 public class ReservaController {

@@ -7,8 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-
+@Tag(name = "Estudios de Baile", description = "API para gestionar estudios de baile")
 @RestController
 @RequestMapping("/estudios")
 public class EstudioDeBaileController {
