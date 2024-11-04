@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS pago;
 -- Eliminación de la tabla instructor
 DROP TABLE IF EXISTS instructor;
 
-
 -- Eliminación de la tabla Notificacion
 DROP TABLE IF EXISTS Notificacion;
 
@@ -25,3 +24,9 @@ DROP TABLE IF EXISTS Paquete;
 
 -- Eliminación de la tabla Paquete_clase
 DROP TABLE IF EXISTS Paquete_clase;
+
+-- Eliminación de la tabla Membresia
+DROP TABLE IF EXISTS Membresia;
+
+-- Eliminación de la tabla Resenia
+DROP TABLE IF EXISTS Resenia;

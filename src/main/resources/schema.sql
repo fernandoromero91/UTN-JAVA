@@ -8,7 +8,7 @@ CREATE TABLE usuario (
 );
 
 -- Creación de la tabla ClaseDeBaile
-CREATE TABLE clase_de_baile (
+CREATE TABLE clasedebaile (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     instructor VARCHAR(255),
@@ -20,7 +20,7 @@ CREATE TABLE clase_de_baile (
 );
 
 -- Creación de la tabla EstudioDeBaile
-CREATE TABLE estudio_de_baile (
+CREATE TABLE estudiodebaile (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     ubicacion VARCHAR(255),
@@ -40,8 +40,8 @@ CREATE TABLE reserva (
     duracion INT,
     estado ENUM('confirmada', 'cancelada', 'modificada'),
     FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-    FOREIGN KEY (clase_id) REFERENCES clase_de_baile(id),
-    FOREIGN KEY (estudio_id) REFERENCES estudio_de_baile(id)
+    FOREIGN KEY (clase_id) REFERENCES clasedebaile(id),
+    FOREIGN KEY (estudio_id) REFERENCES estudiodebaile(id)
 );
 
 -- Creación de la tabla Instructor
@@ -91,5 +91,32 @@ CREATE TABLE paquete_clase (
     clase_id BIGINT NOT NULL,
     PRIMARY KEY (paquete_id, clase_id),
     FOREIGN KEY (paquete_id) REFERENCES paquete(id),
-    FOREIGN KEY (clase_id) REFERENCES clase_de_baile(id)
+    FOREIGN KEY (clase_id) REFERENCES clasedebaile(id)
+);
+
+-- Guarda el tipo de membresía que un usuario puede adquirir para acceder a clases o beneficios exclusivos.
+CREATE TABLE membresia (
+    id_membresia BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario BIGINT NOT NULL,
+    nombre_membresia VARCHAR(255) NOT NULL,
+    beneficios TEXT,
+    descuento DECIMAL(3, 2) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+);
+
+-- Guarda las reseñas o calificaciones que los usuarios dejan sobre las clases o estudios de baile.
+CREATE TABLE resenia(
+    id_resenia BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario BIGINT NOT NULL,
+    id_clase BIGINT,  -- Opcional, puede estar Nulo
+    id_estudio BIGINT,  -- Opcional, puede estar Nulo
+    puntuacion ENUM('1', '2', '3', '4', '5') NOT NULL,
+    comentario TEXT,
+    fecha DATE NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    FOREIGN KEY (id_clase) REFERENCES clasedebaile(id) ON DELETE SET NULL,
+    FOREIGN KEY (id_estudio) REFERENCES estudiodebaile(id) ON DELETE SET NULL
 );
