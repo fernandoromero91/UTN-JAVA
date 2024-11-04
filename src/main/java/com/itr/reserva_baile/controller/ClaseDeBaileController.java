@@ -26,10 +26,19 @@ public class ClaseDeBaileController {
         return ResponseEntity.ok(claseDeBaileService.getAllClases());
     }
 
-    @GetMapping("/{nombre}")
+    @GetMapping("/nombre/{nombre}")
     public ResponseEntity<ClaseDeBaile> getClaseByNombre(@PathVariable String nombre) {
         try {
             return ResponseEntity.ok(claseDeBaileService.getClaseByNombre(nombre));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClaseDeBaile> getClaseById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(claseDeBaileService.getClaseById(id));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -40,9 +49,9 @@ public class ClaseDeBaileController {
         return new ResponseEntity<>(claseDeBaileService.createClase(claseDeBaile), HttpStatus.CREATED);
     }
 
-
     @PutMapping("/{id}")
-    public ResponseEntity<ClaseDeBaile> updateClase(@PathVariable Long id,@Valid @RequestBody ClaseDeBaile claseDetails) {
+    public ResponseEntity<ClaseDeBaile> updateClase(@PathVariable Long id,
+            @Valid @RequestBody ClaseDeBaile claseDetails) {
         try {
             return ResponseEntity.ok(claseDeBaileService.updateClase(id, claseDetails));
         } catch (RuntimeException e) {

@@ -31,11 +31,20 @@ public class EstudioDeBaileController {
         return new ResponseEntity<>(estudioDeBaileService.createEstudio(estudioDeBaile), HttpStatus.CREATED);
     }
 
-
     @PutMapping("/{id}")
-    public ResponseEntity<EstudioDeBaile> updateEstudio(@PathVariable Long id,@Valid @RequestBody EstudioDeBaile estudioDetails) {
+    public ResponseEntity<EstudioDeBaile> updateEstudio(@PathVariable Long id,
+            @Valid @RequestBody EstudioDeBaile estudioDetails) {
         try {
             return ResponseEntity.ok(estudioDeBaileService.updateEstudio(id, estudioDetails));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EstudioDeBaile> getEstudioById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(estudioDeBaileService.getEstudioById(id));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
