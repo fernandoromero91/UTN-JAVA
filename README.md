@@ -9,7 +9,7 @@ Esta API permite gestionar la reservación de espacios de baile y clases en acad
 - [Uso](#uso)
 - [Documentación de la API](#documentación-de-la-api)
 - [Pruebas](#pruebas)
-- [Contribuciones](#contribuciones)
+- [Equipo](#equipo)
 
 ## Características
 - Gestión de usuarios con roles (USER y ADMIN).
@@ -55,6 +55,9 @@ Esta API permite gestionar la reservación de espacios de baile y clases en acad
    ./mvnw test
    ```
 
-## Contribuciones
+## Equipo
+- Fernando Romero
+- Antonio Saravia
+- Daniel Palza
+- Georgiy Strashko
 
-Fer
