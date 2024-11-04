@@ -20,7 +20,17 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll() // Permitir acceso a Swagger
                         .requestMatchers("/usuarios/**").hasRole("ADMIN")
-                        .requestMatchers("/clases/**", "/estudios/**", "/reservas/**").authenticated()
+                        .requestMatchers(
+                            "/clases/**", 
+                            "/estudios/**", 
+                            "/reservas/**",
+                            "/resenias/**",
+                            "/membresias/**",
+                            "/notificaciones/**",
+                            "/instructores/**",
+                            "/pagos/**",
+                            "/paquetes/**"
+                        ).authenticated()
                         .anyRequest().permitAll()
                 )
                 .httpBasic(httpBasicCustomizer -> {}); 

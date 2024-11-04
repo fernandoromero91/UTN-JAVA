@@ -16,7 +16,7 @@ import jakarta.validation.constraints.NotEmpty;
 @Table("resenia")
 public class Resenia {
     @Id
-    @Column("id_membresia")
+    @Column("id_resenia")
     private Long idResenia;
 
     @NotNull(message = "El usuarioId es obligatorio")
